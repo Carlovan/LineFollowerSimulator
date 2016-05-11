@@ -2,21 +2,24 @@ import sys
 import pygame
 from pygame.sprite import Sprite
 
-# Screen constants
-screen_width  = 600
-screen_height = 600
-screen_size = (screen_width, screen_height)
+class MainWindow:
+	'''Handle the main game window'''
+	def __init__(self, width=640, height=480, title="Main window"):
+		pygame.init()
 
-def main():
-	pygame.init()
+		self.width = width
+		self.height = height
+		self.screen = pygame.display.set_mode((self.width, self.height))
 
-	screen = pygame.display.set_mode(screen_size)
+		pygame.display.set_caption(title)
 
-	# Main loop
-	while 1:
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT: 
-				sys.exit()
+	def MainLoop(self):
+		while True:
+			for event in pygame.event.get():
+				if event.type == pygame.QUIT: 
+					sys.exit()
+		
 
 if __name__ == "__main__":
-	main()
+	window = MainWindow(title="Line follower simulator")
+	window.MainLoop()
